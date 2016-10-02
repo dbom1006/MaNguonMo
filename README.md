@@ -1,6 +1,12 @@
 # MaNguonMo
 - Môn mã nguồn mở thầy Trung.
 - Đề tài: <b>Calculator</b>
+- Thành viên
+  - Thái Trung Đức.
+  - Lê Chiêu Quốc.
+  - Phạm Xuân Bắc.
+  - Phạm Như Ngọc Tuấn.
+  - Trần Thị Hồng Uyên.
 - Lưu ý:
   - Code trực tiếp project thì import folder vô eclipse, không new folder trong workspace của hắn, tránh mất công copy qua về.
   - Xem code và test thì copy qua workspace eclipse.
