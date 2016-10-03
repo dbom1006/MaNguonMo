@@ -138,9 +138,11 @@ public class StringHandling {
                             if (laDau(input.charAt(i))) {
                                 err = true;
                                 number =  "Error: Nhập dấu!";
-                            } else if (!number.equals("")) {
+                            } 
+                            if (!number.equals("")) {
                                 so.add(Double.parseDouble(number));
                                 number = "";
+                                so.add(Double.parseDouble(number));
                             }
                             	
                         }catch (Exception e) {
@@ -212,9 +214,10 @@ public class StringHandling {
                     dau.set(i, i > 0 ? dau.get(i - 1) : '+');
                 }
                 if (dau.get(i) == '\u221A') {
-                    double ans = Math.sqrt(so.get(i+1));
+                    double ans = Math.sqrt(so.get(i));
+                    so.set(i, 0.0);
                     so.set(i+1, ans);
-                    dau.set(i, i > 0 ? dau.get(i - 1) : '+');
+                    dau.set(i, '+');
                 }
                 
             }
