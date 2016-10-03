@@ -21,9 +21,11 @@ public class XuLy {
 	}
 	//Hàm gọi từ Main.java
 	public static String Tinh(String s){
+		String result;
 		//Bắc
-		StringHandling st = new StringHandling(s);
-		String result=String.valueOf(st.getResult());
+		StringHandling st = new StringHandling();
+		//result=String.valueOf(st.getResult());
+		result=st.XuLyCSCT(s);
 		if(checkPi(result)) result=String.valueOf(Math.PI);
 		
 		

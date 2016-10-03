@@ -24,9 +24,11 @@ public class StringHandling {
     	this.stringContent();
     	this.Tinh();
     }
-    
+    public StringHandling(){
+    	
+    }
 	public boolean laDau(char c) {
-        return (c=='+' || c=='-' || c=='*'||c=='/'||c=='^');
+        return (c=='+' || c=='-' || c=='*'||c=='/'||c=='^'|| c=='\u221A' );
     }
 	public boolean err;
 	
@@ -45,12 +47,67 @@ public class StringHandling {
             }
         }
 	}
-    
+    private boolean hasCSCT(String s){
+    	
+    	return s.contains("sin")||s.contains("cos")||s.contains("tan")||s.contains("\u221A");
+    }
+    public String XuLyCSCT(String s){
+    	
+    	if(hasCSCT(s)){
+    		if(s.charAt(0)=='s'){
+    			s=s.replace("sin","");
+    			if(hasCSCT(s)) s=XuLyCSCT(s);
+    			return String.valueOf(Math.sin(Double.parseDouble(s)));
+    		}
+    		if(s.charAt(0)=='c'){
+    			
+    			s=s.replace("cos","");
+    			if(hasCSCT(s)) s=XuLyCSCT(s);
+    			return String.valueOf(Math.cos(Double.parseDouble(s)));
+    		}
+    		if(s.charAt(0)=='t'){
+    			s=s.replace("tan","");			
+    			if(hasCSCT(s)) s=XuLyCSCT(s);
+    			return String.valueOf(Math.sin(Double.parseDouble(s)));
+    		}
+    		if(s.charAt(0)=='\u221A'){
+    			s=s.replace("\u221A","");
+    			if(hasCSCT(s)) s=XuLyCSCT(s);
+    			return String.valueOf(Math.sqrt(Double.parseDouble(s)));
+    		}
+    	}
+    	return s;
+    }
 	public void stringContent(){
 		int i=0;
 		while (i < input.length()) {
             if (laDau(input.charAt(i))) {
-                if (laDau(input.charAt(i + 1))) {
+
+            	 //xu lý dấu căn
+                if (input.charAt(i) == '\u221A') {
+                	dau.add(input.charAt(i++));
+                	System.out.println("Chay :" + input.charAt(i)  );
+                    try {
+                        if (laDau(input.charAt(i))) {
+                            err = true;
+                            number =  "Error: Nhập dấu!";
+                        } 
+                        while (i < input.length() && !laDau(input.charAt(i))) {
+                        	number+=input.charAt(i++);
+                        }
+                        if (!number.equals("")) {
+                            so.add(Double.parseDouble(number));
+                            number = "";
+                            so.add(Double.parseDouble("0"));
+                        }
+                        	
+                    }catch (Exception e) {
+                        err = true;
+                        number= "Error: Nhập dấu căn!";
+                    }
+                } 
+                
+                else if (laDau(input.charAt(i + 1))) {
                     // Xử lý nếu có các dấu liên tiếp
                     if (input.charAt(i) == '+' && input.charAt(i + 1) != '*' && input.charAt(i + 1) != '/')
                         dau.add(input.charAt(++i));
@@ -100,6 +157,7 @@ public class StringHandling {
 
                         }
                     }
+                    
                     //xu lý dấu mũ
                     else if (input.charAt(i) == '^') {
                         try {
@@ -129,28 +187,7 @@ public class StringHandling {
                         }
 
                     } 
-                    
-                    //xu lý dấu căn
-                    else if (input.charAt(i) == '\u221A') {
-                        try {
-                        	dau.add(input.charAt(i++));
-                            
-                            if (laDau(input.charAt(i))) {
-                                err = true;
-                                number =  "Error: Nhập dấu!";
-                            } 
-                            if (!number.equals("")) {
-                                so.add(Double.parseDouble(number));
-                                number = "";
-                                so.add(Double.parseDouble(number));
-                            }
-                            	
-                        }catch (Exception e) {
-                            err = true;
-                            number= "Error: Nhập dấu căn!";
-                        }
-
-                    } else {
+                    else {
                         err = true;
                         number= "Eror: Nhập dấu!";
                     }
@@ -213,17 +250,18 @@ public class StringHandling {
                     so.set(i + 1, ans);
                     dau.set(i, i > 0 ? dau.get(i - 1) : '+');
                 }
-                if (dau.get(i) == '\u221A') {
-                    double ans = Math.sqrt(so.get(i));
-                    so.set(i, 0.0);
-                    so.set(i+1, ans);
-                    dau.set(i, '+');
-                }
+                
                 
             }
             catch (Exception e){
                 err=true;
                 //return "Error: Lỗi số mũ!";
+            }
+            if (dau.get(i) == '\u221A') {
+                double ans = Math.sqrt(so.get(i));
+                so.set(i, 0.0);
+                so.set(i+1, ans);
+                dau.set(i, '+');
             }
         }
 
