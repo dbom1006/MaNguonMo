@@ -1,8 +1,4 @@
 //Thái Trung Đức
-import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.StringSelection;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
@@ -17,7 +13,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Widget;
 import org.eclipse.wb.swt.SWTResourceManager;
-import org.eclipse.swt.graphics.Point;
 
 public class Main {
 
@@ -56,7 +51,6 @@ public class Main {
 	private Button btn_pi;
 	private boolean daTinh=false;
 	private boolean loiTinh=false;
-
 	/**
 	 * Launch the application.
 	 * @param args
@@ -423,5 +417,73 @@ public class Main {
 	}
 	public Label getLbl_luutru() {
 		return lbl_luutru;
+	}
+	
+	public class CalButton extends Button{
+
+		public CalButton(Composite parent, int style) {
+			super(parent, style);
+			this.addListener(SWT.Selection,new Listener() {
+			    public void handleEvent(Event event) {
+			    	Widget wid=event.widget;
+			    	String s,t=txt_dulieu.getText();
+			    	if(loiTinh) t="";
+			    	if(daTinh) s="";
+			    	else s=t;
+					if(wid==btn_1) txt_dulieu.setText(s+"1");
+					if(wid==btn_2) txt_dulieu.setText(s+"2");
+					if(wid==btn_3) txt_dulieu.setText(s+"3");
+					if(wid==btn_4) txt_dulieu.setText(s+"4");
+					if(wid==btn_5) txt_dulieu.setText(s+"5");
+					if(wid==btn_6) txt_dulieu.setText(s+"6");
+					if(wid==btn_7) txt_dulieu.setText(s+"7");
+					if(wid==btn_8) txt_dulieu.setText(s+"8");
+					if(wid==btn_9) txt_dulieu.setText(s+"9");
+					if(wid==btn_0) txt_dulieu.setText(s+"0");
+					if(wid==btn_cham) txt_dulieu.setText(s+".");
+					if(wid==btn_mu) txt_dulieu.setText(s+"^");
+					if(wid==btn_can) txt_dulieu.setText(s+"\u221A");
+					if(wid==btn_cong) txt_dulieu.setText(t+"+");
+					if(wid==btn_tru) txt_dulieu.setText(t+"-");
+					if(wid==btn_nhan) txt_dulieu.setText(t+"*");
+					if(wid==btn_chia) txt_dulieu.setText(t+"/");
+					if(wid==btn_mo) txt_dulieu.setText(s+"(");
+					if(wid==btn_dong) txt_dulieu.setText(s+")");
+					if(wid==btnCos) txt_dulieu.setText(s+"cos");
+					if(wid==btnSin) txt_dulieu.setText(s+"sin");
+					if(wid==btnTan) txt_dulieu.setText(s+"tan");
+					if(wid==btn_pi) txt_dulieu.setText(s+"\u03C0");
+					if(wid==btn_xoakytu) if(!s.equals("")) txt_dulieu.setText(s.substring(0,s.length()-1));
+					if(wid==btn_xoa) txt_dulieu.setText("");
+					if(wid==btn_xoahet){ txt_dulieu.setText(""); lbl_luutru.setText(""); }
+					daTinh=false;
+					loiTinh=false;
+					if(wid==btn_bang){
+						daTinh=true;
+						String result=XuLy.Tinh(t);
+						lbl_luutru.setText(t); 
+						txt_dulieu.setText(result); 
+						if(result.contains("Lỗi!")) loiTinh=true;
+					}
+					if(wid==btnHex) {
+						daTinh=true;
+						String result=XuLy.Tinh(t);
+						lbl_luutru.setText(result); 
+						result=XuLy.ToHex(result);
+						txt_dulieu.setText(result);
+						if(result.contains("Lỗi!")) loiTinh=true;
+					}
+					if(wid==btnBin){ 
+						daTinh=true;
+						String result=XuLy.Tinh(t);
+						lbl_luutru.setText(result);
+						result=XuLy.ToBin(result);
+						txt_dulieu.setText(result);
+						if(result.contains("Lỗi!")) loiTinh=true;
+					}
+			    }
+			});
+		}
+		
 	}
 }
