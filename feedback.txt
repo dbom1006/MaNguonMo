@@ -1,0 +1,13 @@
+﻿-- <Uyen> | 3/10/2016
+CALCULATOR 
+- Review about interface: 
+	+ Đơn giản, sơ khai, nhưng nhìn chung ổn: 
+vị trí các button hợp lý, thể hiện được các phím chức năng calculator .
+	+ Nên make color cho từng button để thể hiện từng vùng phím riêng biệt.
+	+ Thể hiện được thông báo: Lỗi!Sai cú pháp --> GOOD JOB. 
+	+ CE và C có gì khác nhau???
+	+ Có BIN, HEX --> Vì sao lại không có DEC, OCT?
+- Review about function: 
+	+ Chỉ mới complete demo giao diện, 
+chưa code từng calculator function --> chưa feedback về function được.
+	

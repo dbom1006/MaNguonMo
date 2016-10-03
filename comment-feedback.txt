@@ -1,0 +1,5 @@
+﻿To: -- <Uyen> | 3/10/2016
++ Việc làm màu cho các color phải có thiết kế như bữa thầy nói, là phải chuẩn màu, kết hợp tốt, rồi có ý nghĩa mục đích phù hợp với phần mềm, không màu mè hoa chè => Chỉ in đậm phần phím số
++ CE và C khác nhau: CE là xóa 1 dòng hiện tại. C là xóa toàn bộ screen
++ BIN, HEX là chuyển đổi cơ số từ INT, DOUBLE => BIN, HEX nên DEC là dư thừa, còn OCT thì không có hàm hỗ trợ. Thêm vô cũng bễ layout đẹp trai.
+------------------------------------------------------------

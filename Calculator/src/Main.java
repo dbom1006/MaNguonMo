@@ -91,6 +91,7 @@ public class Main {
 	protected void createContents() {
 		
 		shlCalculator = new Shell(SWT.CLOSE | SWT.TITLE | SWT.MIN);
+		shlCalculator.setImage(SWTResourceManager.getImage("D:\\Study\\Open Source\\Calculator\\img\\Calculator.ico"));
 		shlCalculator.setText("Calculator");
 		shlCalculator.setSize(395, 398);
 		shlCalculator.setMaximized(false);
