@@ -7,7 +7,7 @@ import java.util.List;
 
 public class CalculatorString {
 	private static String Pi = "\u03C0";
-	private static String NumPi = "3.14159265358979";
+	private static String NumPi = String.valueOf(Math.PI);
 	private static String Can = "\u221A";
 	private static NumberFormat NF=new DecimalFormat("#.###########");
 	private CalculatorError Error = new CalculatorError();
